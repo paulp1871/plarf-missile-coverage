@@ -18,7 +18,6 @@ __pycache__/
 *.jpg
 *.jpeg
 *.svg
-output/
 
 # OS-specific
 .DS_Store
