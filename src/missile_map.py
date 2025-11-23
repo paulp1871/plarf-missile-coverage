@@ -22,16 +22,6 @@ def create_map(center=[30, 115], zoom=4, tiles="CartoDB dark_matter"):
     """
     return folium.Map(location=center, zoom_start=zoom, tiles=tiles)
 
-
-def add_base_markers(map_obj, bases_df):
-    """Add markers for each PLARF base."""
-    for _, base in bases_df.iterrows():
-        folium.Marker(
-            location=[base["lat"], base["lon"]],
-            popup=base["name"],
-            tooltip=base["name"],
-        ).add_to(map_obj)
-
 def add_range_layers(map_obj, bases_df, ranges_df):
     """
     Create a SEPARATE layer for each missile type (not just category).
@@ -46,8 +36,9 @@ def add_range_layers(map_obj, bases_df, ranges_df):
 
     for _, r in ranges_df.iterrows():
         code = r["missile_code"]
-        missile_layers[code] = folium.FeatureGroup(name=f"{code} coverage")
-        missile_layers[code].add_to(map_obj)  # Attach once
+        fg = folium.FeatureGroup(name=f"{code} coverage")
+        fg.add_to(map_obj)  # Attach once
+        missile_layers[code] = fg
 
     # 2. Build lookup for missile_code → row
     ranges_by_code = {
@@ -82,6 +73,13 @@ def add_range_layers(map_obj, bases_df, ranges_df):
             color = r["color"]
             label = r["label"]
 
+            # Add a marker to this missile layer
+            folium.Marker(
+                location=[base["lat"], base["lon"]],
+                popup=f'{base["name"]} – {label}',
+                tooltip=base["name"],
+            ).add_to(missile_layers[code])
+
             # Add circle ONLY to the layer for that missile
             folium.Circle(
                 location=[base["lat"], base["lon"]],
@@ -95,6 +93,7 @@ def add_range_layers(map_obj, bases_df, ranges_df):
 
     # 4. Enable layer toggles
     folium.LayerControl().add_to(map_obj)
+
 
 def add_legend(map_obj, ranges_df):
     rows = []
@@ -143,7 +142,6 @@ def build_plarf_map(
     ranges = load_ranges(ranges_path)
 
     m = create_map()
-    add_base_markers(m, bases)
     add_range_layers(m, bases, ranges)
     add_legend(m, ranges)
     export_map(m, output_path)
