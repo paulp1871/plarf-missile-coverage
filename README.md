@@ -138,7 +138,6 @@ Additional values (ranges, coordinates, labels) may include small adjustments fo
 | DF-21A | MRBM     | ~2150 km      | Classic MRBM |
 | DF-21D | ASBM     | ~1550 km      | Anti-ship ballistic missile |
 | DF-26  | IRBM     | ~4000 km      | Covers Guam |
-| DF-41  | ICBM     | ~15,000 km    | Global range |
 | DF-100 | LACM     | ~2000 km      | Long-range cruise missile |
 
 ---
