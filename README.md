@@ -43,6 +43,8 @@ plarf-missile-coverage/
 │   ├─ bases.csv                # PLARF brigades + coordinates + assigned missile
 │   └─ ranges.csv               # Missile types, categories, and simplified ranges
 │
+├─ media
+│
 ├─ notebooks/
 │   ├─ plarf_missile_map.ipynb  # Main notebook (generate/export the map)
 │   └─ archive/                 # Old or experimental notebooks
