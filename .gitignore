@@ -1,6 +1,6 @@
-# Virtual environments
-env/
+# Ignore virtual environments
 venv/
+.env/
 .venv/
 
 # Python cache
@@ -9,24 +9,13 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Jupyter
+# Jupyter artifacts
 .ipynb_checkpoints/
 
-# Output files
-*.html
-*.png
-*.jpg
-*.jpeg
-*.svg
-
-# OS-specific
-.DS_Store
-Thumbs.db
-ehthumbs.db
+# Ignore ALL files in output except exported HTML
+/output/*
+!/output/
+!/output/*.html
 
 # PyCharm
 .idea/
-
-# Misc
-*.env
-*.lock
