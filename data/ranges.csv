@@ -1,3 +1,12 @@
-label,category,radius_km,color
-SRBM ~300 km,SRBM,300,red
-MRBM ~1500 km,MRBM,1500,blue
+missile_code,label,category,radius_km,color
+DF-11,DF-11 SRBM (300 km),SRBM,300,red
+DF-15,DF-15 SRBM (600 km),SRBM,600,orange
+DF-16,DF-16 SRBM (1000 km),SRBM,1000,#ff8800
+DF-16B,DF-16B SRBM (1000 km),SRBM,1000,#ff8800
+DF-17,DF-17 HGV (2500 km),HGV,2500,purple
+DF-21,DF-21 MRBM (2150 km),MRBM,2150,blue
+DF-21A,DF-21A MRBM (2150 km),MRBM,2150,cyan
+DF-21D,DF-21D ASBM (1550 km),MRBM,1550,navy
+DF-26,DF-26 IRBM (4000 km),IRBM,4000,green
+DF-41,DF-41 ICBM (15000 km),ICBM,15000,grey
+DF-100,DF-100 LACM (2000 km),LACM,2000,pink
