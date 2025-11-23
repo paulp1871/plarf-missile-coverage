@@ -44,15 +44,15 @@ plarf-missile-coverage/
 │   └─ ranges.csv               # Missile types, categories, and simplified ranges
 │
 ├─ media
+│   └─ image_example.png   # Screenshot for README (tracked)
 │
 ├─ notebooks/
-│   ├─ plarf_missile_map.ipynb  # Main notebook (generate/export the map)
-│   └─ archive/                 # Old or experimental notebooks
+│   ├─ archive/                 # Old or experimental notebooks
+│   └─ plarf_missile_map.ipynb  # Main notebook (generate/export the map)
 │
 ├─ output/
-│   ├─ .output_keep             # Keeps folder tracked
+│   ├─ .output_keep                 # Keeps folder tracked
 │   └─ plarf_missile_coverage.html  # Exported interactive map (ignored in git)
-│   └─ plarf_missile_coverage.png   # Screenshot for README (tracked)
 │
 ├─ src/
 │   └─ missile_map.py           # Core map-building logic
