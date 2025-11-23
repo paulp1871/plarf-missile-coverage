@@ -1,7 +1,6 @@
 missile_code,label,category,radius_km,color
 DF-11,DF-11 SRBM (300 km),SRBM,300,red
 DF-15,DF-15 SRBM (600 km),SRBM,600,orange
-DF-16,DF-16 SRBM (1000 km),SRBM,1000,#ff8800
 DF-16B,DF-16B SRBM (1000 km),SRBM,1000,#ff8800
 DF-17,DF-17 HGV (2500 km),HGV,2500,purple
 DF-21,DF-21 MRBM (2150 km),MRBM,2150,blue
