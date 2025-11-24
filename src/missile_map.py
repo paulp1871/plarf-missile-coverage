@@ -40,7 +40,7 @@ def add_range_layers(map_obj, bases_df, ranges_df):
         fg.add_to(map_obj)  # Attach once
         missile_layers[code] = fg
 
-    # 2. Build lookup for missile_code → row
+    # 2. Build lookup for missile_code then row
     ranges_by_code = {
         row["missile_code"]: row
         for _, row in ranges_df.iterrows()
@@ -132,7 +132,7 @@ def export_map(map_obj, output_path="../output/map.html"):
 def build_plarf_map(
     bases_path="../data/bases.csv",
     ranges_path="../data/ranges.csv",
-    output_path="../output/plarf_styled_dark.html",
+    output_path="../output/plarf_missile_coverage.html",
 ):
     """
     Convenience function: load data, build a styled map,
