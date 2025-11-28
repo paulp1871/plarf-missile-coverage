@@ -1,6 +1,6 @@
 # PLARF Missile Coverage
 
-An interactive visualization of missile coverage from selected brigades of the People’s Liberation Army Rocket Force (PLARF) facing the Western Pacific.  
+An interactive visualization of missile coverage from selected brigades of the People’s Liberation Army Rocket Force (PLARF).  
 This project maps approximate missile ranges using OSINT-based brigade coordinates and simplified missile performance data.
 
 ![PLARF Missile Coverage Map](media/image_example.png)
@@ -25,7 +25,7 @@ All data is approximate and comes from publicly available sources.
 
 ## Features
 
-- Separate map layer for **each missile type** (DF-11, DF-15, DF-16B, DF-17, DF-21A, DF-21D, DF-26, DF-41, DF-100)
+- Separate map layer for **each missile type** (DF-11, DF-15, DF-16, DF-16B, DF-17, DF-21A, DF-21D, DF-26, DF-41, DF-100, DF-10, DF-10A, DF-31, DF-31A, DF-31AG, DF-5)
 - Only brigades equipped with a missile appear in that missile’s layer
 - Color-coded range rings based on missile system
 - Toggle layers on/off in the interactive map (Leaflet LayerControl)
@@ -133,12 +133,20 @@ Additional values (ranges, coordinates, labels) may include small adjustments fo
 |--------|----------|---------------|-------|
 | DF-11  | SRBM     | ~300 km       | Short-range |
 | DF-15  | SRBM     | ~600 km       | Short-range |
-| DF-16B | SRBM     | ~1000 km      | Extended-range SRBM |
+| DF-16  | SRBM     | ~1000 km      | Extended-range SRBM |
+| DF-16B | SRBM     | ~1000 km      | Maneuverable/extended-range SRBM |
 | DF-17  | HGV      | ~2500 km      | Hypersonic glide vehicle |
 | DF-21A | MRBM     | ~2150 km      | Classic MRBM |
 | DF-21D | ASBM     | ~1550 km      | Anti-ship ballistic missile |
 | DF-26  | IRBM     | ~4000 km      | Covers Guam |
 | DF-100 | LACM     | ~2000 km      | Long-range cruise missile |
+| DF-10  | LACM     | ~1500 km      | Ground-launched cruise missile |
+| DF-10A | LACM     | ~1500 km      | Upgraded GL-CM variant |
+| DF-31  | ICBM     | ~7000 km      | Road-mobile ICBM |
+| DF-31A | ICBM     | ~11000 km     | Extended-range variant |
+| DF-31AG| ICBM     | ~11000 km     | Improved road-mobile launcher |
+| DF-41  | ICBM     | ~13000 km     | Long-range, MIRV-capable |
+| DF-5   | ICBM     | ~12000 km     | Silo-based liquid ICBM |
 
 ---
 
