@@ -1,14 +1,39 @@
 name,lat,lon,missiles
+Base 61 - Huangshan (Anhui),29.693670,118.300750,
 Brigade 611 - Chizhou (Anhui),30.693722,117.899460,DF-26
 Brigade 612 - Leping (Jiangxi),28.980699,117.120333,DF-21A
 Brigade 613 - Shangrao (Jiangxi),28.473698,117.892180,DF-15
-Brigade 614 - Yong'an (Fujian),26.061420,117.314914,DF-17
+Brigade 614 - Yong'an (Fujian),26.061420,117.314914,"DF-11, DF-17"
 Brigade 615 - Meizhou (Guangdong),24.284673,115.970660,DF-11
-Brigade 616 - Ganzhou (Guangdong),25.901627,114.960340,DF-17
+Brigade 616 - Ganzhou (Guangdong),25.901627,114.960340,"DF-15, DF-17"
 Brigade 617 - Jinhua (Zhejiang),29.149513,119.615749,DF-16B
+Brigade 618 - Nanchang (Jiangxi),28.500880,115.922039,Unknown
+Base 62 - Kunming (Yunnan),24.990880,102.843240,
+Brigade 621 - Yibin (Sichuan),28.761295,104.789930,DF-31AG
+Brigade 622 - Yuxi (Yunnan),24.360227,102.492667,DF-31A
+Brigade 623 - Luorong (Sichuan),24.386782,109.571921,DF-10A
 Brigade 624 - Danzhou (Hainan),19.472163,109.461026,DF-21D
+Brigade 625 - Jianshui (Yunnan),23.734899,102.871884,DF-26
 Brigade 626 - Qingyuan (Guangdong),23.684396,113.177081,DF-26
 Brigade 627 - Puning (Guangdong),23.418995,116.177730,DF-17
+Base 63 - Huaihua (Hunan),27.575323,110.025527,
+Brigade 631 - Jingzhou (Hunan),26.579157,109.670782,DF-5
+Brigade 632 - Shaoyang (Hunan),27.254009,111.388961,DF-31AG
+Brigade 633 - Huitong (Hunan),26.893910,109.739592,DF-5
+Brigade 634 - Yueyang (Hunan),29.333373,113.215396,DF-5
+Brigade 635 - Yichun (Jiangxi),27.888072,114.387228,DF-10
+Brigade 636 - Shaoguan (Guangdong),24.756827,113.680600,DF-16A
+Base 65 - Shenyang (Liaoning),41.857919,123.451444,
+Brigade 651 - Chifeng (Inner Mongolia),42.258124,118.825075,DF-41
+Brigade 652 - Jilin City (Jilin),43.938500,126.449443,DF-41
 Brigade 654 - Haicheng (Liaoning),40.845255,122.768522,DF-26
 Brigade 655 - Tonghua (Jilin),41.667404,125.957184,DF-17
 Brigade 656 - Jinan (Shandong),36.234871,117.715607,DF-100
+Brigade 657 - Jinzhou (Liaoning),39.302431,122.064301,Unknown
+Base 66 - Luoyang (Henan),34.640071,112.381550,
+Brigade 661 - Lushi (Henan),34.516723,110.861740,DF-5
+Brigade 662 - Luanchuan (Henan),33.792418,111.588338,DF-5
+Brigade 663 - Nanyang (Henan),33.010779,112.414978,DF-31A
+Brigade 664 - Xiangyang (Hubei),31.945292,112.120759,DF-41
+Brigade 665 - Changzhi (Shanxi),36.285955,113.177970,Unknown
+Brigade 666 - Xinyang (Henan),32.168528,114.172972,DF-26
