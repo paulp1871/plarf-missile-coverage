@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLARF Missile Coverage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar {
+            width: 320px;
+            background: #16213e;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid #0f3460;
+        }
+        
+        .sidebar h1 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #e94560;
+        }
+        
+        .sidebar p {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #e94560;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #ff6b6b;
+        }
+        
+        .btn-secondary {
+            background: #0f3460;
+            color: #eee;
+        }
+        
+        .btn-secondary:hover {
+            background: #1a4a7a;
+        }
+        
+        .category {
+            margin-bottom: 20px;
+        }
+        
+        .category-header {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e94560;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #0f3460;
+        }
+        
+        .missile-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            background: #1a1a2e;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .missile-item:hover {
+            background: #0f3460;
+        }
+        
+        .missile-item input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .missile-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .missile-info {
+            flex: 1;
+        }
+        
+        .missile-code {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .missile-range {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #0f3460;
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .status-bar {
+            padding: 10px 15px;
+            background: #0f3460;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid #1a4a7a;
+        }
+        
+        .status-bar span {
+            color: #e94560;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>PLARF Missile Coverage</h1>
+            <p>Select missile systems to display on the map. Toggle individual missiles or use the buttons below.</p>
+            
+            <div class="controls">
+                <div class="btn-group">
+                    <button id="btn-select-all" class="btn btn-primary">Select All</button>
+                    <button id="btn-clear-all" class="btn btn-secondary">Clear All</button>
+                </div>
+                <button id="btn-update-map" class="btn btn-primary" style="width: 100%;">Update Map</button>
+            </div>
+            
+            <div id="missile-list">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    Loading missiles...
+                </div>
+            </div>
+            
+            <div class="status-bar">
+                <span id="selected-count">0</span> missiles selected
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <iframe id="map-frame" class="map-frame"></iframe>
+            <div id="map-loading" class="loading" style="display: none;">
+                <div class="loading-spinner"></div>
+                Generating map...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let missiles = [];
+        let categories = {};
+        
+        // Category display order
+        const categoryOrder = ['SRBM', 'HGV', 'MRBM', 'IRBM', 'LACM', 'ICBM'];
+        
+        async function init() {
+            try {
+                // Fetch missiles and categories
+                const [missilesRes, categoriesRes] = await Promise.all([
+                    fetch('/api/missiles'),
+                    fetch('/api/categories')
+                ]);
+                
+                missiles = await missilesRes.json();
+                categories = await categoriesRes.json();
+                
+                renderMissileList();
+                selectAll();
+                updateMap();
+            } catch (error) {
+                console.error('Failed to load data:', error);
+                document.getElementById('missile-list').innerHTML = 
+                    '<p style="color: #e94560;">Failed to load missile data.</p>';
+            }
+        }
+        
+        function renderMissileList() {
+            const container = document.getElementById('missile-list');
+            let html = '';
+            
+            for (const category of categoryOrder) {
+                if (!categories[category]) continue;
+                
+                const categoryMissiles = missiles.filter(m => m.category === category);
+                
+                html += `<div class="category">
+                    <div class="category-header">${category}</div>`;
+                
+                for (const missile of categoryMissiles) {
+                    html += `
+                    <label class="missile-item">
+                        <input type="checkbox" value="${missile.missile_code}" onchange="updateCount()">
+                        <div class="missile-color" style="background: ${missile.color};"></div>
+                        <div class="missile-info">
+                            <div class="missile-code">${missile.missile_code}</div>
+                            <div class="missile-range">${missile.radius_km} km</div>
+                        </div>
+                    </label>`;
+                }
+                
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        function getSelectedMissiles() {
+            const checkboxes = document.querySelectorAll('#missile-list input[type="checkbox"]:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+        
+        function selectAll() {
+            document.querySelectorAll('#missile-list input[type="checkbox"]')
+                .forEach(cb => cb.checked = true);
+            updateCount();
+        }
+        
+        function selectNone() {
+            document.querySelectorAll('#missile-list input[type="checkbox"]')
+                .forEach(cb => cb.checked = false);
+            updateCount();
+        }
+        
+        function updateCount() {
+            const count = getSelectedMissiles().length;
+            document.getElementById('selected-count').textContent = count;
+        }
+        
+        async function updateMap() {
+            const selected = getSelectedMissiles();
+            const mapFrame = document.getElementById('map-frame');
+            const loading = document.getElementById('map-loading');
+            
+            loading.style.display = 'block';
+            
+            try {
+                let url = '/api/map';
+                if (selected.length > 0 && selected.length < missiles.length) {
+                    url += `?missiles=${selected.join(',')}`;
+                }
+                
+                // Load map in iframe
+                mapFrame.src = url;
+                
+                // Wait for iframe to load
+                mapFrame.onload = () => {
+                    loading.style.display = 'none';
+                };
+            } catch (error) {
+                console.error('Failed to load map:', error);
+                loading.innerHTML = '<p style="color: #e94560;">Failed to load map.</p>';
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Attach button event listeners
+            document.getElementById('btn-select-all').addEventListener('click', selectAll);
+            document.getElementById('btn-clear-all').addEventListener('click', selectNone);
+            document.getElementById('btn-update-map').addEventListener('click', updateMap);
+            
+            // Load data
+            init();
+        });
+    </script>
+</body>
+</html>

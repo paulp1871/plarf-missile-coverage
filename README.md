@@ -13,10 +13,10 @@ This project visualizes the approximate range envelopes of major Chinese missile
 
 - `folium` for interactive maps  
 - `pandas` for data handling  
-- Jupyter Notebook for running and exporting the final HTML map  
+- **FastAPI** web server for serving the exported map  
 - A small Python module for clean, reusable map generation logic  
 
-The map allows you to toggle each missile type individually, showing which brigades are equipped with which missile systems and how far each can reach.
+The map allows you to toggle each missile type individually using the Leaflet layer control.
 
 This is a **technical and educational visualization**, not a military evaluation.  
 All data is approximate and comes from publicly available sources.
@@ -39,24 +39,17 @@ All data is approximate and comes from publicly available sources.
 ```
 plarf-missile-coverage/
 │
+├─ app/                         # FastAPI web application
+│   └─ main.py                  # FastAPI app entry point
+│
 ├─ data/
-│   ├─ bases.csv                # PLARF brigades + coordinates + assigned missile
+│   ├─ bases.csv                # PLARF brigades + coordinates + assigned missiles
 │   └─ ranges.csv               # Missile types, categories, and simplified ranges
 │
-├─ media
-│   └─ image_example.png   # Screenshot for README (tracked)
+├─ media/
+│   └─ image_example.png        # Screenshot for README
 │
-├─ notebooks/
-│   ├─ archive/                 # Old or experimental notebooks
-│   └─ plarf_missile_map.ipynb  # Main notebook (generate/export the map)
-│
-├─ output/
-│   ├─ .output_keep                 # Keeps folder tracked
-│   └─ plarf_missile_coverage.html  # Exported interactive map (ignored in git)
-│
-├─ src/
-│   └─ missile_map.py           # Core map-building logic
-│
+├─ requirements.txt
 ├─ .gitignore
 ├─ LICENSE
 └─ README.md
@@ -77,35 +70,23 @@ source .venv/bin/activate      # macOS / Linux
 ### 2. Install dependencies
 
 ```
-pip install pandas folium notebook
+pip install -r requirements.txt
 ```
 
-### 3. Start Jupyter Notebook
+### 3. Run the FastAPI server
 
-```
-jupyter notebook
-```
-
-### 4. Open the main notebook
-
-Open:
-
-```
-notebooks/plarf_missile_map.ipynb
+```bash
+# From project root directory
+uvicorn app.main:app --reload
 ```
 
-Run the notebook top-to-bottom.  
-It will:
+The server will start at `http://127.0.0.1:8000`
 
-- Load data from CSV  
-- Build the interactive PLARF coverage map  
-- Save the HTML map to:
+### 4. Open in browser
 
-```
-output/plarf_missile_coverage.html
-```
+Navigate to `http://127.0.0.1:8000` to view the interactive missile coverage map.
 
-Open that file in your browser to interact with the map.
+If the map file is missing, the server will generate it on first request and save it to [output/plarf_missile_coverage.html](output/plarf_missile_coverage.html). That file is ignored by git via [.gitignore](.gitignore).
 
 ---
 
