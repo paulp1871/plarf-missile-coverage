@@ -12,7 +12,7 @@ import hashlib
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(BASE_DIR / "src"))
 
-from missile_map import load_bases, load_ranges, build_filtered_map
+from src.missile_map import load_bases, load_ranges, build_plarf_map
 
 
 class MapService:
@@ -74,10 +74,9 @@ class MapService:
             return self._map_cache[cache_key]
         
         # Generate new map
-        map_obj = build_filtered_map(
+        map_obj = build_plarf_map(
             bases_path=str(self.bases_path),
             ranges_path=str(self.ranges_path),
-            missile_codes=missile_codes,
         )
         
         # Get HTML representation
