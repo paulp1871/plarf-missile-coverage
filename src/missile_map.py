@@ -3,35 +3,16 @@ import folium
 
 
 def load_bases(path="../data/bases.csv"):
-    """Load PLARF base coordinates from CSV."""
     return pd.read_csv(path)
 
 
 def load_ranges(path="../data/ranges.csv"):
-    """Load missile range definitions (km, colors, categories)."""
     return pd.read_csv(path)
 
 def create_map(center=[30, 115], zoom=4, tiles="CartoDB dark_matter"):
-    """
-    Create a folium map centered on China.
-
-    tiles examples:
-      - 'OpenStreetMap'
-      - 'CartoDB positron'  (light)
-      - 'CartoDB dark_matter' (dark)
-    """
     return folium.Map(location=center, zoom_start=zoom, tiles=tiles)
 
 def add_range_layers(map_obj, bases_df, ranges_df):
-    """
-    Create a SEPARATE layer for each missile type (not just category).
-
-    A layer named "DF-26", "DF-21D", "DF-17", etc.
-
-    Only bases that actually have that missile will appear in that layer.
-    """
-
-    # 1. Create a FeatureGroup for EACH missile code
     missile_layers = {}
 
     for _, r in ranges_df.iterrows():
@@ -40,19 +21,15 @@ def add_range_layers(map_obj, bases_df, ranges_df):
         fg.add_to(map_obj)  # Attach once
         missile_layers[code] = fg
 
-    # 2. Build lookup for missile_code then row
     ranges_by_code = {
         row["missile_code"]: row
         for _, row in ranges_df.iterrows()
     }
 
-    # 3. For each base, draw circles ONLY for its missiles
     for _, base in bases_df.iterrows():
-
-        # Parse comma-separated missile list
         missiles_str = str(base.get("missiles", "") or "").strip()
         if not missiles_str:
-            continue  # base has no missile data
+            continue
 
         missile_codes = [
             code.strip()
@@ -61,26 +38,21 @@ def add_range_layers(map_obj, bases_df, ranges_df):
         ]
 
         for code in missile_codes:
-
-            # Skip unknown missiles
             if code not in ranges_by_code:
                 continue
 
             r = ranges_by_code[code]
 
-            # Extract missile range and color
             radius_km = r["radius_km"]
             color = r["color"]
             label = r["label"]
 
-            # Add a marker to this missile layer
             folium.Marker(
                 location=[base["lat"], base["lon"]],
                 popup=f'{base["name"]} – {label}',
                 tooltip=base["name"],
             ).add_to(missile_layers[code])
 
-            # Add circle ONLY to the layer for that missile
             folium.Circle(
                 location=[base["lat"], base["lon"]],
                 radius=radius_km * 1000,
@@ -91,7 +63,6 @@ def add_range_layers(map_obj, bases_df, ranges_df):
                 fill_opacity=0.09,
             ).add_to(missile_layers[code])
 
-    # 4. Enable layer toggles
     folium.LayerControl().add_to(map_obj)
 
 
@@ -125,7 +96,6 @@ def add_legend(map_obj, ranges_df):
     map_obj.get_root().html.add_child(folium.Element(legend_html))
 
 def export_map(map_obj, output_path="../output/map.html"):
-    """Save folium map as HTML file."""
     map_obj.save(output_path)
 
 
@@ -134,10 +104,6 @@ def build_plarf_map(
     ranges_path="../data/ranges.csv",
     output_path="../output/plarf_missile_coverage.html",
 ):
-    """
-    Convenience function: load data, build a styled map,
-    add markers, layers, legend, and export it.
-    """
     bases = load_bases(bases_path)
     ranges = load_ranges(ranges_path)
 
@@ -147,3 +113,5 @@ def build_plarf_map(
     export_map(m, output_path)
 
     return m
+
+build_plarf_map(bases_path="../data/bases.csv", ranges_path="../data/ranges.csv", output_path="../output/map.html")
