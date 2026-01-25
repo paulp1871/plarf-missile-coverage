@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c5769a383f8817723c4699d5c5cff15d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 50px;
+        left: 50px;
+        z-index:9999;
+        font-size:14px;
+        background-color: white;
+        padding: 10px;
+        border: 2px solid grey;
+        border-radius: 4px;
+        opacity: 0.9;
+        ">
+        <b>Missile Coverage</b><br>
+        <span style="color:red;">&#9679;</span> DF-11 (600 km)<br><span style="color:orange;">&#9679;</span> DF-15 (725 km)<br><span style="color:#ff8800;">&#9679;</span> DF-16B (700 km)<br><span style="color:#ff6600;">&#9679;</span> DF-16 (1000 km)<br><span style="color:purple;">&#9679;</span> DF-17 (2500 km)<br><span style="color:blue;">&#9679;</span> DF-21A (1750 km)<br><span style="color:navy;">&#9679;</span> DF-21D (1500 km)<br><span style="color:green;">&#9679;</span> DF-26 (3000 km)<br><span style="color:pink;">&#9679;</span> DF-100 (2000 km)<br><span style="color:#cc99ff;">&#9679;</span> DF-10 (1500 km)<br><span style="color:#b266ff;">&#9679;</span> DF-10A (1500 km)<br><span style="color:#4444cc;">&#9679;</span> DF-31 (7000 km)<br><span style="color:#333399;">&#9679;</span> DF-31A (11000 km)<br><span style="color:#191970;">&#9679;</span> DF-31AG (11000 km)<br><span style="color:#2e8b57;">&#9679;</span> DF-41 (13000 km)<br><span style="color:#8b0000;">&#9679;</span> DF-5 (12000 km)
+    </div>
+    
+    
+            <div class="folium-map" id="map_c5769a383f8817723c4699d5c5cff15d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c5769a383f8817723c4699d5c5cff15d = L.map(
+                "map_c5769a383f8817723c4699d5c5cff15d",
+                {
+                    center: [30.0, 115.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 4,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a19fda5bd036e4dd0376a8c04f2a2e9f = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_a19fda5bd036e4dd0376a8c04f2a2e9f.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_ddc6f87829dc9e57a95689946109a177 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_0264f880445dfaaf31685dc0db05e880 = L.marker(
+                [26.06142, 117.314914],
+                {
+}
+            ).addTo(feature_group_ddc6f87829dc9e57a95689946109a177);
+        
+    
+        var popup_90de4e44b5ff6d8b1b5339ab9e220a0d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f4f550b374720eeae39e97ae832b7725 = $(`<div id="html_f4f550b374720eeae39e97ae832b7725" style="width: 100.0%; height: 100.0%;">Brigade 614 - Yong'an (Fujian) – DF-11 SRBM (300 km)</div>`)[0];
+                popup_90de4e44b5ff6d8b1b5339ab9e220a0d.setContent(html_f4f550b374720eeae39e97ae832b7725);
+            
+        
+
+        marker_0264f880445dfaaf31685dc0db05e880.bindPopup(popup_90de4e44b5ff6d8b1b5339ab9e220a0d)
+        ;
+
+        
+    
+    
+            marker_0264f880445dfaaf31685dc0db05e880.bindTooltip(
+                `<div>
+                     Brigade 614 - Yong'an (Fujian)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_c78f262082033776d492f8a5e77efafe = L.circle(
+                [26.06142, 117.314914],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 600000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_ddc6f87829dc9e57a95689946109a177);
+        
+    
+        var popup_2b5ca9c535c2c7179e63f360fdfa8ca6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_96cefdc390a8fb69dae0b15e7cfc2162 = $(`<div id="html_96cefdc390a8fb69dae0b15e7cfc2162" style="width: 100.0%; height: 100.0%;">Brigade 614 - Yong'an (Fujian) – DF-11 SRBM (300 km)</div>`)[0];
+                popup_2b5ca9c535c2c7179e63f360fdfa8ca6.setContent(html_96cefdc390a8fb69dae0b15e7cfc2162);
+            
+        
+
+        circle_c78f262082033776d492f8a5e77efafe.bindPopup(popup_2b5ca9c535c2c7179e63f360fdfa8ca6)
+        ;
+
+        
+    
+    
+            var marker_621dbaa09e072af66811afed8d034b59 = L.marker(
+                [24.284673, 115.97066],
+                {
+}
+            ).addTo(feature_group_ddc6f87829dc9e57a95689946109a177);
+        
+    
+        var popup_89fbde5c686b539ba7dbeef504e9df55 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_596c8ad3dfbaf292eed60965c2611899 = $(`<div id="html_596c8ad3dfbaf292eed60965c2611899" style="width: 100.0%; height: 100.0%;">Brigade 615 - Meizhou (Guangdong) – DF-11 SRBM (300 km)</div>`)[0];
+                popup_89fbde5c686b539ba7dbeef504e9df55.setContent(html_596c8ad3dfbaf292eed60965c2611899);
+            
+        
+
+        marker_621dbaa09e072af66811afed8d034b59.bindPopup(popup_89fbde5c686b539ba7dbeef504e9df55)
+        ;
+
+        
+    
+    
+            marker_621dbaa09e072af66811afed8d034b59.bindTooltip(
+                `<div>
+                     Brigade 615 - Meizhou (Guangdong)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_1e6e6e5cd9d16b07e8093672131ccc8b = L.circle(
+                [24.284673, 115.97066],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 600000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_ddc6f87829dc9e57a95689946109a177);
+        
+    
+        var popup_7456aa044a0358eb2caac11edbb935ec = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e1becd19e5ddb3b3c4f44caa7b98022a = $(`<div id="html_e1becd19e5ddb3b3c4f44caa7b98022a" style="width: 100.0%; height: 100.0%;">Brigade 615 - Meizhou (Guangdong) – DF-11 SRBM (300 km)</div>`)[0];
+                popup_7456aa044a0358eb2caac11edbb935ec.setContent(html_e1becd19e5ddb3b3c4f44caa7b98022a);
+            
+        
+
+        circle_1e6e6e5cd9d16b07e8093672131ccc8b.bindPopup(popup_7456aa044a0358eb2caac11edbb935ec)
+        ;
+
+        
+    
+    
+            feature_group_ddc6f87829dc9e57a95689946109a177.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_b2f0ce8f6e63a20a8f0b3af092fa599c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_988b7e418813c161310930cde5df4f7f = L.marker(
+                [28.473698, 117.89218],
+                {
+}
+            ).addTo(feature_group_b2f0ce8f6e63a20a8f0b3af092fa599c);
+        
+    
+        var popup_5d2a1a16697e9514d51257afa36fdd1a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d7155c9ba66c2e60cc3fa73ad60e0e38 = $(`<div id="html_d7155c9ba66c2e60cc3fa73ad60e0e38" style="width: 100.0%; height: 100.0%;">Brigade 613 - Shangrao (Jiangxi) – DF-15 SRBM (600 km)</div>`)[0];
+                popup_5d2a1a16697e9514d51257afa36fdd1a.setContent(html_d7155c9ba66c2e60cc3fa73ad60e0e38);
+            
+        
+
+        marker_988b7e418813c161310930cde5df4f7f.bindPopup(popup_5d2a1a16697e9514d51257afa36fdd1a)
+        ;
+
+        
+    
+    
+            marker_988b7e418813c161310930cde5df4f7f.bindTooltip(
+                `<div>
+                     Brigade 613 - Shangrao (Jiangxi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_69a35d12e069fad336537180404d288a = L.circle(
+                [28.473698, 117.89218],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 725000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_b2f0ce8f6e63a20a8f0b3af092fa599c);
+        
+    
+        var popup_3d0b5567722902d2a0c997e433b970c4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4d56ca31e224a7186c20fa799cf92ec4 = $(`<div id="html_4d56ca31e224a7186c20fa799cf92ec4" style="width: 100.0%; height: 100.0%;">Brigade 613 - Shangrao (Jiangxi) – DF-15 SRBM (600 km)</div>`)[0];
+                popup_3d0b5567722902d2a0c997e433b970c4.setContent(html_4d56ca31e224a7186c20fa799cf92ec4);
+            
+        
+
+        circle_69a35d12e069fad336537180404d288a.bindPopup(popup_3d0b5567722902d2a0c997e433b970c4)
+        ;
+
+        
+    
+    
+            var marker_35ffb6bd63f7e4b25d3ff82f858ca1e7 = L.marker(
+                [25.901627, 114.96034],
+                {
+}
+            ).addTo(feature_group_b2f0ce8f6e63a20a8f0b3af092fa599c);
+        
+    
+        var popup_f0401584b2f70a67b750bb4c02f50521 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_634a4e54298db15904d5dbb99626a867 = $(`<div id="html_634a4e54298db15904d5dbb99626a867" style="width: 100.0%; height: 100.0%;">Brigade 616 - Ganzhou (Guangdong) – DF-15 SRBM (600 km)</div>`)[0];
+                popup_f0401584b2f70a67b750bb4c02f50521.setContent(html_634a4e54298db15904d5dbb99626a867);
+            
+        
+
+        marker_35ffb6bd63f7e4b25d3ff82f858ca1e7.bindPopup(popup_f0401584b2f70a67b750bb4c02f50521)
+        ;
+
+        
+    
+    
+            marker_35ffb6bd63f7e4b25d3ff82f858ca1e7.bindTooltip(
+                `<div>
+                     Brigade 616 - Ganzhou (Guangdong)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_f2ef322ccd679799a69ea8cbcf183cd0 = L.circle(
+                [25.901627, 114.96034],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 725000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_b2f0ce8f6e63a20a8f0b3af092fa599c);
+        
+    
+        var popup_a81382174fb14be6fc8cbb843749714b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a34b8006616aee3aefb10e739c89f78f = $(`<div id="html_a34b8006616aee3aefb10e739c89f78f" style="width: 100.0%; height: 100.0%;">Brigade 616 - Ganzhou (Guangdong) – DF-15 SRBM (600 km)</div>`)[0];
+                popup_a81382174fb14be6fc8cbb843749714b.setContent(html_a34b8006616aee3aefb10e739c89f78f);
+            
+        
+
+        circle_f2ef322ccd679799a69ea8cbcf183cd0.bindPopup(popup_a81382174fb14be6fc8cbb843749714b)
+        ;
+
+        
+    
+    
+            feature_group_b2f0ce8f6e63a20a8f0b3af092fa599c.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_3c99e27c38d4d734633cc4bd93961521 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_d7ee20cce5a20b96db9a6ce10c890922 = L.marker(
+                [29.149513, 119.615749],
+                {
+}
+            ).addTo(feature_group_3c99e27c38d4d734633cc4bd93961521);
+        
+    
+        var popup_39b7fa935b35becfd42ae784ed9c38e4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8f5ec577801f0a26691f76eac2aa7c9d = $(`<div id="html_8f5ec577801f0a26691f76eac2aa7c9d" style="width: 100.0%; height: 100.0%;">Brigade 617 - Jinhua (Zhejiang) – DF-16B SRBM (1000 km)</div>`)[0];
+                popup_39b7fa935b35becfd42ae784ed9c38e4.setContent(html_8f5ec577801f0a26691f76eac2aa7c9d);
+            
+        
+
+        marker_d7ee20cce5a20b96db9a6ce10c890922.bindPopup(popup_39b7fa935b35becfd42ae784ed9c38e4)
+        ;
+
+        
+    
+    
+            marker_d7ee20cce5a20b96db9a6ce10c890922.bindTooltip(
+                `<div>
+                     Brigade 617 - Jinhua (Zhejiang)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_61ffe7e031ddd8b7e62a07fda35d18f0 = L.circle(
+                [29.149513, 119.615749],
+                {"bubblingMouseEvents": true, "color": "#ff8800", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff8800", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 700000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_3c99e27c38d4d734633cc4bd93961521);
+        
+    
+        var popup_cbf05b67962308fbdbb8854e1e6dd3e0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5235353219acde272fe5dfabc04ce25d = $(`<div id="html_5235353219acde272fe5dfabc04ce25d" style="width: 100.0%; height: 100.0%;">Brigade 617 - Jinhua (Zhejiang) – DF-16B SRBM (1000 km)</div>`)[0];
+                popup_cbf05b67962308fbdbb8854e1e6dd3e0.setContent(html_5235353219acde272fe5dfabc04ce25d);
+            
+        
+
+        circle_61ffe7e031ddd8b7e62a07fda35d18f0.bindPopup(popup_cbf05b67962308fbdbb8854e1e6dd3e0)
+        ;
+
+        
+    
+    
+            feature_group_3c99e27c38d4d734633cc4bd93961521.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_2204c18cff93fe725fdfde318e79496f = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_2204c18cff93fe725fdfde318e79496f.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_28bdc3eb4d0f83acbff280c0a58ac04a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_129cec791d9aeb069c4635c8ce87b619 = L.marker(
+                [26.06142, 117.314914],
+                {
+}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_a58942ba75a15856957637206dd40f7b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_330b3a6e0dbc7cc3642b352847e77511 = $(`<div id="html_330b3a6e0dbc7cc3642b352847e77511" style="width: 100.0%; height: 100.0%;">Brigade 614 - Yong'an (Fujian) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_a58942ba75a15856957637206dd40f7b.setContent(html_330b3a6e0dbc7cc3642b352847e77511);
+            
+        
+
+        marker_129cec791d9aeb069c4635c8ce87b619.bindPopup(popup_a58942ba75a15856957637206dd40f7b)
+        ;
+
+        
+    
+    
+            marker_129cec791d9aeb069c4635c8ce87b619.bindTooltip(
+                `<div>
+                     Brigade 614 - Yong'an (Fujian)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_03ca7398759860212939ef2f2d8bc973 = L.circle(
+                [26.06142, 117.314914],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2500000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_94c352435b5811dde2ad53bb075caa52 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8e81b2be29d320c41aba25392017641f = $(`<div id="html_8e81b2be29d320c41aba25392017641f" style="width: 100.0%; height: 100.0%;">Brigade 614 - Yong'an (Fujian) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_94c352435b5811dde2ad53bb075caa52.setContent(html_8e81b2be29d320c41aba25392017641f);
+            
+        
+
+        circle_03ca7398759860212939ef2f2d8bc973.bindPopup(popup_94c352435b5811dde2ad53bb075caa52)
+        ;
+
+        
+    
+    
+            var marker_81bc548aef2b2011b463b7122ccaff79 = L.marker(
+                [25.901627, 114.96034],
+                {
+}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_e19e1b5c3f22a7d800e13d8e602c0d3b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e4427731808064cbee44c9ae5798792 = $(`<div id="html_7e4427731808064cbee44c9ae5798792" style="width: 100.0%; height: 100.0%;">Brigade 616 - Ganzhou (Guangdong) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_e19e1b5c3f22a7d800e13d8e602c0d3b.setContent(html_7e4427731808064cbee44c9ae5798792);
+            
+        
+
+        marker_81bc548aef2b2011b463b7122ccaff79.bindPopup(popup_e19e1b5c3f22a7d800e13d8e602c0d3b)
+        ;
+
+        
+    
+    
+            marker_81bc548aef2b2011b463b7122ccaff79.bindTooltip(
+                `<div>
+                     Brigade 616 - Ganzhou (Guangdong)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_c48f4fec2c6c5d2d0653223ff2cb8f36 = L.circle(
+                [25.901627, 114.96034],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2500000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_2322069177378577a26cb45ca42596cf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2ddc2909e9cdb796af03982ba0de5ca1 = $(`<div id="html_2ddc2909e9cdb796af03982ba0de5ca1" style="width: 100.0%; height: 100.0%;">Brigade 616 - Ganzhou (Guangdong) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_2322069177378577a26cb45ca42596cf.setContent(html_2ddc2909e9cdb796af03982ba0de5ca1);
+            
+        
+
+        circle_c48f4fec2c6c5d2d0653223ff2cb8f36.bindPopup(popup_2322069177378577a26cb45ca42596cf)
+        ;
+
+        
+    
+    
+            var marker_b49e2cefbd8d7704f7e88825d936608f = L.marker(
+                [23.418995, 116.17773],
+                {
+}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_6485b997cc73c0bbf2bd2eae0fbce93d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6c6767382f6d34d08fbd3a69e09df514 = $(`<div id="html_6c6767382f6d34d08fbd3a69e09df514" style="width: 100.0%; height: 100.0%;">Brigade 627 - Puning (Guangdong) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_6485b997cc73c0bbf2bd2eae0fbce93d.setContent(html_6c6767382f6d34d08fbd3a69e09df514);
+            
+        
+
+        marker_b49e2cefbd8d7704f7e88825d936608f.bindPopup(popup_6485b997cc73c0bbf2bd2eae0fbce93d)
+        ;
+
+        
+    
+    
+            marker_b49e2cefbd8d7704f7e88825d936608f.bindTooltip(
+                `<div>
+                     Brigade 627 - Puning (Guangdong)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_ae172c56d4299e762af57e16b8b56e6e = L.circle(
+                [23.418995, 116.17773],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2500000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_6a80e9bc8a2a950368afff1eab91b814 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_695b93df925b176b0599eb6766042527 = $(`<div id="html_695b93df925b176b0599eb6766042527" style="width: 100.0%; height: 100.0%;">Brigade 627 - Puning (Guangdong) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_6a80e9bc8a2a950368afff1eab91b814.setContent(html_695b93df925b176b0599eb6766042527);
+            
+        
+
+        circle_ae172c56d4299e762af57e16b8b56e6e.bindPopup(popup_6a80e9bc8a2a950368afff1eab91b814)
+        ;
+
+        
+    
+    
+            var marker_544c9020100706467a72f908477e6dc3 = L.marker(
+                [41.667404, 125.957184],
+                {
+}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_29348598332313e661215e5dc87c866d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c48028ba8e9b9a2da7b56501235bdc4e = $(`<div id="html_c48028ba8e9b9a2da7b56501235bdc4e" style="width: 100.0%; height: 100.0%;">Brigade 655 - Tonghua (Jilin) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_29348598332313e661215e5dc87c866d.setContent(html_c48028ba8e9b9a2da7b56501235bdc4e);
+            
+        
+
+        marker_544c9020100706467a72f908477e6dc3.bindPopup(popup_29348598332313e661215e5dc87c866d)
+        ;
+
+        
+    
+    
+            marker_544c9020100706467a72f908477e6dc3.bindTooltip(
+                `<div>
+                     Brigade 655 - Tonghua (Jilin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_a30632cabb969d33a727ab5de31d746c = L.circle(
+                [41.667404, 125.957184],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2500000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_28bdc3eb4d0f83acbff280c0a58ac04a);
+        
+    
+        var popup_8623e4400ac2413564ee3a4eb004aeb4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_97f932f84e7c4fefd4cac443bd8f42d4 = $(`<div id="html_97f932f84e7c4fefd4cac443bd8f42d4" style="width: 100.0%; height: 100.0%;">Brigade 655 - Tonghua (Jilin) – DF-17 HGV (2500 km)</div>`)[0];
+                popup_8623e4400ac2413564ee3a4eb004aeb4.setContent(html_97f932f84e7c4fefd4cac443bd8f42d4);
+            
+        
+
+        circle_a30632cabb969d33a727ab5de31d746c.bindPopup(popup_8623e4400ac2413564ee3a4eb004aeb4)
+        ;
+
+        
+    
+    
+            feature_group_28bdc3eb4d0f83acbff280c0a58ac04a.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_09df619325d4e490056e4f909eb29814 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_72213679512e80bdc0f8f2fddd637685 = L.marker(
+                [28.980699, 117.120333],
+                {
+}
+            ).addTo(feature_group_09df619325d4e490056e4f909eb29814);
+        
+    
+        var popup_57255ab9f2163a072235539062c17c18 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ff29c11c7fe42f40e30e9e15de795a87 = $(`<div id="html_ff29c11c7fe42f40e30e9e15de795a87" style="width: 100.0%; height: 100.0%;">Brigade 612 - Leping (Jiangxi) – DF-21A MRBM (2150 km)</div>`)[0];
+                popup_57255ab9f2163a072235539062c17c18.setContent(html_ff29c11c7fe42f40e30e9e15de795a87);
+            
+        
+
+        marker_72213679512e80bdc0f8f2fddd637685.bindPopup(popup_57255ab9f2163a072235539062c17c18)
+        ;
+
+        
+    
+    
+            marker_72213679512e80bdc0f8f2fddd637685.bindTooltip(
+                `<div>
+                     Brigade 612 - Leping (Jiangxi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_61e8b269e8b1cebcab239224805fdad0 = L.circle(
+                [28.980699, 117.120333],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1750000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_09df619325d4e490056e4f909eb29814);
+        
+    
+        var popup_c0e457d6b76d11183f75b8c9fd598bf5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c4126636fe6dba8205d98133ba3af7b5 = $(`<div id="html_c4126636fe6dba8205d98133ba3af7b5" style="width: 100.0%; height: 100.0%;">Brigade 612 - Leping (Jiangxi) – DF-21A MRBM (2150 km)</div>`)[0];
+                popup_c0e457d6b76d11183f75b8c9fd598bf5.setContent(html_c4126636fe6dba8205d98133ba3af7b5);
+            
+        
+
+        circle_61e8b269e8b1cebcab239224805fdad0.bindPopup(popup_c0e457d6b76d11183f75b8c9fd598bf5)
+        ;
+
+        
+    
+    
+            feature_group_09df619325d4e490056e4f909eb29814.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_c076bb5e4fbf7543f142a7a8a44ebcab = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_e88ea7ce8f1e2b9760f1f6c991e45d03 = L.marker(
+                [19.472163, 109.461026],
+                {
+}
+            ).addTo(feature_group_c076bb5e4fbf7543f142a7a8a44ebcab);
+        
+    
+        var popup_f0983c08ffbe804e3549863a6c1294d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9fa580cbd849d21078cf835ed7df7702 = $(`<div id="html_9fa580cbd849d21078cf835ed7df7702" style="width: 100.0%; height: 100.0%;">Brigade 624 - Danzhou (Hainan) – DF-21D ASBM (1550 km)</div>`)[0];
+                popup_f0983c08ffbe804e3549863a6c1294d9.setContent(html_9fa580cbd849d21078cf835ed7df7702);
+            
+        
+
+        marker_e88ea7ce8f1e2b9760f1f6c991e45d03.bindPopup(popup_f0983c08ffbe804e3549863a6c1294d9)
+        ;
+
+        
+    
+    
+            marker_e88ea7ce8f1e2b9760f1f6c991e45d03.bindTooltip(
+                `<div>
+                     Brigade 624 - Danzhou (Hainan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_ef12cb7b7c245b02064f788f091b06c3 = L.circle(
+                [19.472163, 109.461026],
+                {"bubblingMouseEvents": true, "color": "navy", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "navy", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1500000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_c076bb5e4fbf7543f142a7a8a44ebcab);
+        
+    
+        var popup_24911f95128a580a15321b4d7b81b39a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_93c2ffc62a879b75f39e3d486c91288d = $(`<div id="html_93c2ffc62a879b75f39e3d486c91288d" style="width: 100.0%; height: 100.0%;">Brigade 624 - Danzhou (Hainan) – DF-21D ASBM (1550 km)</div>`)[0];
+                popup_24911f95128a580a15321b4d7b81b39a.setContent(html_93c2ffc62a879b75f39e3d486c91288d);
+            
+        
+
+        circle_ef12cb7b7c245b02064f788f091b06c3.bindPopup(popup_24911f95128a580a15321b4d7b81b39a)
+        ;
+
+        
+    
+    
+            feature_group_c076bb5e4fbf7543f142a7a8a44ebcab.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_ec837c242b3624df619a1c2545a3acae = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_ee84ad45de214ecae87525496a338307 = L.marker(
+                [30.693722, 117.89946],
+                {
+}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_461f093f366e6dec8aec0d0f13983ca1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_053696c455aa7cb5571e1e4a9934d8ca = $(`<div id="html_053696c455aa7cb5571e1e4a9934d8ca" style="width: 100.0%; height: 100.0%;">Brigade 611 - Chizhou (Anhui) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_461f093f366e6dec8aec0d0f13983ca1.setContent(html_053696c455aa7cb5571e1e4a9934d8ca);
+            
+        
+
+        marker_ee84ad45de214ecae87525496a338307.bindPopup(popup_461f093f366e6dec8aec0d0f13983ca1)
+        ;
+
+        
+    
+    
+            marker_ee84ad45de214ecae87525496a338307.bindTooltip(
+                `<div>
+                     Brigade 611 - Chizhou (Anhui)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_1e996e7c66d27a3db3c7d5ef698c562e = L.circle(
+                [30.693722, 117.89946],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_ce844a039d5280a7971352d8f1b2931c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_32a26a9a4e45a370c2ac423311a2d269 = $(`<div id="html_32a26a9a4e45a370c2ac423311a2d269" style="width: 100.0%; height: 100.0%;">Brigade 611 - Chizhou (Anhui) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_ce844a039d5280a7971352d8f1b2931c.setContent(html_32a26a9a4e45a370c2ac423311a2d269);
+            
+        
+
+        circle_1e996e7c66d27a3db3c7d5ef698c562e.bindPopup(popup_ce844a039d5280a7971352d8f1b2931c)
+        ;
+
+        
+    
+    
+            var marker_83af55ef24d5ef1b8ab51f80b852954b = L.marker(
+                [23.734899, 102.871884],
+                {
+}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_03be8e9f2197ce57df387231b22ac8eb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d1c63dc32552575ba1ce4e9e5aaad026 = $(`<div id="html_d1c63dc32552575ba1ce4e9e5aaad026" style="width: 100.0%; height: 100.0%;">Brigade 625 - Jianshui (Yunnan) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_03be8e9f2197ce57df387231b22ac8eb.setContent(html_d1c63dc32552575ba1ce4e9e5aaad026);
+            
+        
+
+        marker_83af55ef24d5ef1b8ab51f80b852954b.bindPopup(popup_03be8e9f2197ce57df387231b22ac8eb)
+        ;
+
+        
+    
+    
+            marker_83af55ef24d5ef1b8ab51f80b852954b.bindTooltip(
+                `<div>
+                     Brigade 625 - Jianshui (Yunnan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_35b6dcb49f78a3d51095e06a444f7aa1 = L.circle(
+                [23.734899, 102.871884],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_633ecdbbac9ec08946b127395fe95db3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8903be2b7d561d2254f3d27340e0a53 = $(`<div id="html_f8903be2b7d561d2254f3d27340e0a53" style="width: 100.0%; height: 100.0%;">Brigade 625 - Jianshui (Yunnan) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_633ecdbbac9ec08946b127395fe95db3.setContent(html_f8903be2b7d561d2254f3d27340e0a53);
+            
+        
+
+        circle_35b6dcb49f78a3d51095e06a444f7aa1.bindPopup(popup_633ecdbbac9ec08946b127395fe95db3)
+        ;
+
+        
+    
+    
+            var marker_1e8ca70604527b94b82611371dc865c3 = L.marker(
+                [23.684396, 113.177081],
+                {
+}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_ad7684301e8dafe27f2413b73a947cc1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e8eae61fba65ec432a3dae40090755cf = $(`<div id="html_e8eae61fba65ec432a3dae40090755cf" style="width: 100.0%; height: 100.0%;">Brigade 626 - Qingyuan (Guangdong) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_ad7684301e8dafe27f2413b73a947cc1.setContent(html_e8eae61fba65ec432a3dae40090755cf);
+            
+        
+
+        marker_1e8ca70604527b94b82611371dc865c3.bindPopup(popup_ad7684301e8dafe27f2413b73a947cc1)
+        ;
+
+        
+    
+    
+            marker_1e8ca70604527b94b82611371dc865c3.bindTooltip(
+                `<div>
+                     Brigade 626 - Qingyuan (Guangdong)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_b770f1482205fbe380ce9b6756877920 = L.circle(
+                [23.684396, 113.177081],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_0a521edce83b3ff7f14da878a99f8a6c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bdc84edaff7d33305d503df066e730b1 = $(`<div id="html_bdc84edaff7d33305d503df066e730b1" style="width: 100.0%; height: 100.0%;">Brigade 626 - Qingyuan (Guangdong) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_0a521edce83b3ff7f14da878a99f8a6c.setContent(html_bdc84edaff7d33305d503df066e730b1);
+            
+        
+
+        circle_b770f1482205fbe380ce9b6756877920.bindPopup(popup_0a521edce83b3ff7f14da878a99f8a6c)
+        ;
+
+        
+    
+    
+            var marker_0b1da6efa90cf95b858b690d10978b95 = L.marker(
+                [40.845255, 122.768522],
+                {
+}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_914e0df4e28b14ca5925f568399c8d4b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6cc394a1916c085c28fb204543da6bed = $(`<div id="html_6cc394a1916c085c28fb204543da6bed" style="width: 100.0%; height: 100.0%;">Brigade 654 - Haicheng (Liaoning) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_914e0df4e28b14ca5925f568399c8d4b.setContent(html_6cc394a1916c085c28fb204543da6bed);
+            
+        
+
+        marker_0b1da6efa90cf95b858b690d10978b95.bindPopup(popup_914e0df4e28b14ca5925f568399c8d4b)
+        ;
+
+        
+    
+    
+            marker_0b1da6efa90cf95b858b690d10978b95.bindTooltip(
+                `<div>
+                     Brigade 654 - Haicheng (Liaoning)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_c0e56a96e3dc97625e4598429f4ee4b3 = L.circle(
+                [40.845255, 122.768522],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_79c5b16c4814beb93bf1f468d69eae1e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_deb2c434dedefe0ac79672c37079be28 = $(`<div id="html_deb2c434dedefe0ac79672c37079be28" style="width: 100.0%; height: 100.0%;">Brigade 654 - Haicheng (Liaoning) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_79c5b16c4814beb93bf1f468d69eae1e.setContent(html_deb2c434dedefe0ac79672c37079be28);
+            
+        
+
+        circle_c0e56a96e3dc97625e4598429f4ee4b3.bindPopup(popup_79c5b16c4814beb93bf1f468d69eae1e)
+        ;
+
+        
+    
+    
+            var marker_f5640a15848b3454a095312931aa7d42 = L.marker(
+                [32.168528, 114.172972],
+                {
+}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_046cf9a53a0faca1b6a3e7640147ea93 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_34a7b68d8ffd7d3e7f63417b965f80d8 = $(`<div id="html_34a7b68d8ffd7d3e7f63417b965f80d8" style="width: 100.0%; height: 100.0%;">Brigade 666 - Xinyang (Henan) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_046cf9a53a0faca1b6a3e7640147ea93.setContent(html_34a7b68d8ffd7d3e7f63417b965f80d8);
+            
+        
+
+        marker_f5640a15848b3454a095312931aa7d42.bindPopup(popup_046cf9a53a0faca1b6a3e7640147ea93)
+        ;
+
+        
+    
+    
+            marker_f5640a15848b3454a095312931aa7d42.bindTooltip(
+                `<div>
+                     Brigade 666 - Xinyang (Henan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_deeb2341e72bc55752f32474a9498033 = L.circle(
+                [32.168528, 114.172972],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 3000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_ec837c242b3624df619a1c2545a3acae);
+        
+    
+        var popup_6c860c9d46817ac02be1ce91f7cc8a15 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3d3f5fff1bd837c3732819e87b58e09b = $(`<div id="html_3d3f5fff1bd837c3732819e87b58e09b" style="width: 100.0%; height: 100.0%;">Brigade 666 - Xinyang (Henan) – DF-26 IRBM (4000 km)</div>`)[0];
+                popup_6c860c9d46817ac02be1ce91f7cc8a15.setContent(html_3d3f5fff1bd837c3732819e87b58e09b);
+            
+        
+
+        circle_deeb2341e72bc55752f32474a9498033.bindPopup(popup_6c860c9d46817ac02be1ce91f7cc8a15)
+        ;
+
+        
+    
+    
+            feature_group_ec837c242b3624df619a1c2545a3acae.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_8167762a4e966b4601422be63776efb3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_dd82f11e97393042b125eee725e38ddb = L.marker(
+                [36.234871, 117.715607],
+                {
+}
+            ).addTo(feature_group_8167762a4e966b4601422be63776efb3);
+        
+    
+        var popup_3471ecdc1ab84264b806a55f2d24bcf6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a016a6ce6cb32ff1d7fdb369106cdf41 = $(`<div id="html_a016a6ce6cb32ff1d7fdb369106cdf41" style="width: 100.0%; height: 100.0%;">Brigade 656 - Jinan (Shandong) – DF-100 LACM (2000 km)</div>`)[0];
+                popup_3471ecdc1ab84264b806a55f2d24bcf6.setContent(html_a016a6ce6cb32ff1d7fdb369106cdf41);
+            
+        
+
+        marker_dd82f11e97393042b125eee725e38ddb.bindPopup(popup_3471ecdc1ab84264b806a55f2d24bcf6)
+        ;
+
+        
+    
+    
+            marker_dd82f11e97393042b125eee725e38ddb.bindTooltip(
+                `<div>
+                     Brigade 656 - Jinan (Shandong)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_e77c6517c5eedf2040c567bff96f4605 = L.circle(
+                [36.234871, 117.715607],
+                {"bubblingMouseEvents": true, "color": "pink", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "pink", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_8167762a4e966b4601422be63776efb3);
+        
+    
+        var popup_f9bff38c86bd7c8c6e43ce4c11511998 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7195ca3434329ca2488522d6978e5612 = $(`<div id="html_7195ca3434329ca2488522d6978e5612" style="width: 100.0%; height: 100.0%;">Brigade 656 - Jinan (Shandong) – DF-100 LACM (2000 km)</div>`)[0];
+                popup_f9bff38c86bd7c8c6e43ce4c11511998.setContent(html_7195ca3434329ca2488522d6978e5612);
+            
+        
+
+        circle_e77c6517c5eedf2040c567bff96f4605.bindPopup(popup_f9bff38c86bd7c8c6e43ce4c11511998)
+        ;
+
+        
+    
+    
+            feature_group_8167762a4e966b4601422be63776efb3.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_b9b50ece5f34c34f6777bc6cb2d3d6ed = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_b2252c665807d6495e1a78595663cc78 = L.marker(
+                [27.888072, 114.387228],
+                {
+}
+            ).addTo(feature_group_b9b50ece5f34c34f6777bc6cb2d3d6ed);
+        
+    
+        var popup_ba8ea2514614dd90f999f58bc05602cc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_35890e874230a61aa05d2a50facc0cc7 = $(`<div id="html_35890e874230a61aa05d2a50facc0cc7" style="width: 100.0%; height: 100.0%;">Brigade 635 - Yichun (Jiangxi) – DF-10 LACM (1500 km)</div>`)[0];
+                popup_ba8ea2514614dd90f999f58bc05602cc.setContent(html_35890e874230a61aa05d2a50facc0cc7);
+            
+        
+
+        marker_b2252c665807d6495e1a78595663cc78.bindPopup(popup_ba8ea2514614dd90f999f58bc05602cc)
+        ;
+
+        
+    
+    
+            marker_b2252c665807d6495e1a78595663cc78.bindTooltip(
+                `<div>
+                     Brigade 635 - Yichun (Jiangxi)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_485b5b2d1d1a8aa933322a9366bcd9ff = L.circle(
+                [27.888072, 114.387228],
+                {"bubblingMouseEvents": true, "color": "#cc99ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#cc99ff", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1500000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_b9b50ece5f34c34f6777bc6cb2d3d6ed);
+        
+    
+        var popup_f93adeda5f7b9f71ae28c6c1ec53624c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6acfdfd3d491580c4d9ecd308ff69cad = $(`<div id="html_6acfdfd3d491580c4d9ecd308ff69cad" style="width: 100.0%; height: 100.0%;">Brigade 635 - Yichun (Jiangxi) – DF-10 LACM (1500 km)</div>`)[0];
+                popup_f93adeda5f7b9f71ae28c6c1ec53624c.setContent(html_6acfdfd3d491580c4d9ecd308ff69cad);
+            
+        
+
+        circle_485b5b2d1d1a8aa933322a9366bcd9ff.bindPopup(popup_f93adeda5f7b9f71ae28c6c1ec53624c)
+        ;
+
+        
+    
+    
+            feature_group_b9b50ece5f34c34f6777bc6cb2d3d6ed.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_a5b9fe351f75dc62f399655bfa3b5449 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_c4837768b86adf0d070116c472ec8cba = L.marker(
+                [24.386782, 109.571921],
+                {
+}
+            ).addTo(feature_group_a5b9fe351f75dc62f399655bfa3b5449);
+        
+    
+        var popup_bcc5342a2d4a39d0a65f1c15f1cfef30 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_679fdbe82f20fdf6937d1d976a0fafb8 = $(`<div id="html_679fdbe82f20fdf6937d1d976a0fafb8" style="width: 100.0%; height: 100.0%;">Brigade 623 - Luorong (Sichuan) – DF-10A LACM (1500 km)</div>`)[0];
+                popup_bcc5342a2d4a39d0a65f1c15f1cfef30.setContent(html_679fdbe82f20fdf6937d1d976a0fafb8);
+            
+        
+
+        marker_c4837768b86adf0d070116c472ec8cba.bindPopup(popup_bcc5342a2d4a39d0a65f1c15f1cfef30)
+        ;
+
+        
+    
+    
+            marker_c4837768b86adf0d070116c472ec8cba.bindTooltip(
+                `<div>
+                     Brigade 623 - Luorong (Sichuan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_bcecec35a5d6c3f15a82d46e3ab1db48 = L.circle(
+                [24.386782, 109.571921],
+                {"bubblingMouseEvents": true, "color": "#b266ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b266ff", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1500000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_a5b9fe351f75dc62f399655bfa3b5449);
+        
+    
+        var popup_46b8961cb80eb65286a1a3b687dfa076 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b4ae2d35c60e732ff1b8c06e23b42eb0 = $(`<div id="html_b4ae2d35c60e732ff1b8c06e23b42eb0" style="width: 100.0%; height: 100.0%;">Brigade 623 - Luorong (Sichuan) – DF-10A LACM (1500 km)</div>`)[0];
+                popup_46b8961cb80eb65286a1a3b687dfa076.setContent(html_b4ae2d35c60e732ff1b8c06e23b42eb0);
+            
+        
+
+        circle_bcecec35a5d6c3f15a82d46e3ab1db48.bindPopup(popup_46b8961cb80eb65286a1a3b687dfa076)
+        ;
+
+        
+    
+    
+            feature_group_a5b9fe351f75dc62f399655bfa3b5449.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_1ab96f2467293bffaa8bcbc493b292bc = L.featureGroup(
+                {
+}
+            );
+        
+    
+            feature_group_1ab96f2467293bffaa8bcbc493b292bc.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_e62000e211a0a08ffc79eff46cf906da = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_44d45e6593099cd639f07d2549275399 = L.marker(
+                [24.360227, 102.492667],
+                {
+}
+            ).addTo(feature_group_e62000e211a0a08ffc79eff46cf906da);
+        
+    
+        var popup_4a924f940ad35882a9dd0d0328e4ec33 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8c51294c0b603039002e53e106512ef8 = $(`<div id="html_8c51294c0b603039002e53e106512ef8" style="width: 100.0%; height: 100.0%;">Brigade 622 - Yuxi (Yunnan) – DF-31A ICBM (11000 km)</div>`)[0];
+                popup_4a924f940ad35882a9dd0d0328e4ec33.setContent(html_8c51294c0b603039002e53e106512ef8);
+            
+        
+
+        marker_44d45e6593099cd639f07d2549275399.bindPopup(popup_4a924f940ad35882a9dd0d0328e4ec33)
+        ;
+
+        
+    
+    
+            marker_44d45e6593099cd639f07d2549275399.bindTooltip(
+                `<div>
+                     Brigade 622 - Yuxi (Yunnan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_0ae14e7ac47b27ef65f5b418578080a5 = L.circle(
+                [24.360227, 102.492667],
+                {"bubblingMouseEvents": true, "color": "#333399", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#333399", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_e62000e211a0a08ffc79eff46cf906da);
+        
+    
+        var popup_af064366abbb75770f70d4d4a55b9445 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dded9e7e925a0f7780a83822e3326394 = $(`<div id="html_dded9e7e925a0f7780a83822e3326394" style="width: 100.0%; height: 100.0%;">Brigade 622 - Yuxi (Yunnan) – DF-31A ICBM (11000 km)</div>`)[0];
+                popup_af064366abbb75770f70d4d4a55b9445.setContent(html_dded9e7e925a0f7780a83822e3326394);
+            
+        
+
+        circle_0ae14e7ac47b27ef65f5b418578080a5.bindPopup(popup_af064366abbb75770f70d4d4a55b9445)
+        ;
+
+        
+    
+    
+            var marker_fdec909c627fc9d0a3e9cbe22ac16eca = L.marker(
+                [33.010779, 112.414978],
+                {
+}
+            ).addTo(feature_group_e62000e211a0a08ffc79eff46cf906da);
+        
+    
+        var popup_64a6a32b94245033efa8c9406ae841ab = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_55cc66fa4cde4b005e42ee7ff9efeaf8 = $(`<div id="html_55cc66fa4cde4b005e42ee7ff9efeaf8" style="width: 100.0%; height: 100.0%;">Brigade 663 - Nanyang (Henan) – DF-31A ICBM (11000 km)</div>`)[0];
+                popup_64a6a32b94245033efa8c9406ae841ab.setContent(html_55cc66fa4cde4b005e42ee7ff9efeaf8);
+            
+        
+
+        marker_fdec909c627fc9d0a3e9cbe22ac16eca.bindPopup(popup_64a6a32b94245033efa8c9406ae841ab)
+        ;
+
+        
+    
+    
+            marker_fdec909c627fc9d0a3e9cbe22ac16eca.bindTooltip(
+                `<div>
+                     Brigade 663 - Nanyang (Henan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_6c215796d0a2c4800ed5efb2bc436532 = L.circle(
+                [33.010779, 112.414978],
+                {"bubblingMouseEvents": true, "color": "#333399", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#333399", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_e62000e211a0a08ffc79eff46cf906da);
+        
+    
+        var popup_1fcc451f0ea8470d377bf359cb2af444 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f5d17da87bf1e10b236f66505087d4b5 = $(`<div id="html_f5d17da87bf1e10b236f66505087d4b5" style="width: 100.0%; height: 100.0%;">Brigade 663 - Nanyang (Henan) – DF-31A ICBM (11000 km)</div>`)[0];
+                popup_1fcc451f0ea8470d377bf359cb2af444.setContent(html_f5d17da87bf1e10b236f66505087d4b5);
+            
+        
+
+        circle_6c215796d0a2c4800ed5efb2bc436532.bindPopup(popup_1fcc451f0ea8470d377bf359cb2af444)
+        ;
+
+        
+    
+    
+            feature_group_e62000e211a0a08ffc79eff46cf906da.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_6e2e357157175921a9756e39ca5979f3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_eb7aecce244a6890673441460d6833f7 = L.marker(
+                [28.761295, 104.78993],
+                {
+}
+            ).addTo(feature_group_6e2e357157175921a9756e39ca5979f3);
+        
+    
+        var popup_5c24d9ee5ead0ce8e1faee8b7548d210 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cb0419813044c1adaf857488525407c0 = $(`<div id="html_cb0419813044c1adaf857488525407c0" style="width: 100.0%; height: 100.0%;">Brigade 621 - Yibin (Sichuan) – DF-31AG ICBM (11000 km)</div>`)[0];
+                popup_5c24d9ee5ead0ce8e1faee8b7548d210.setContent(html_cb0419813044c1adaf857488525407c0);
+            
+        
+
+        marker_eb7aecce244a6890673441460d6833f7.bindPopup(popup_5c24d9ee5ead0ce8e1faee8b7548d210)
+        ;
+
+        
+    
+    
+            marker_eb7aecce244a6890673441460d6833f7.bindTooltip(
+                `<div>
+                     Brigade 621 - Yibin (Sichuan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_f16a73234cc6bc0e8b9d57d7aa09451b = L.circle(
+                [28.761295, 104.78993],
+                {"bubblingMouseEvents": true, "color": "#191970", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#191970", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_6e2e357157175921a9756e39ca5979f3);
+        
+    
+        var popup_6902e3f22410b252ad84753992618d0e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0b44ae5359feee6ddd78c0da7beb8c99 = $(`<div id="html_0b44ae5359feee6ddd78c0da7beb8c99" style="width: 100.0%; height: 100.0%;">Brigade 621 - Yibin (Sichuan) – DF-31AG ICBM (11000 km)</div>`)[0];
+                popup_6902e3f22410b252ad84753992618d0e.setContent(html_0b44ae5359feee6ddd78c0da7beb8c99);
+            
+        
+
+        circle_f16a73234cc6bc0e8b9d57d7aa09451b.bindPopup(popup_6902e3f22410b252ad84753992618d0e)
+        ;
+
+        
+    
+    
+            var marker_2bd565b718285e0890b8a2d53868c09a = L.marker(
+                [27.254009, 111.388961],
+                {
+}
+            ).addTo(feature_group_6e2e357157175921a9756e39ca5979f3);
+        
+    
+        var popup_21a7c27f6eab17d2ac6ac30fe7e7eb98 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8df11112bd1f6d67dfdae2baf1aef43c = $(`<div id="html_8df11112bd1f6d67dfdae2baf1aef43c" style="width: 100.0%; height: 100.0%;">Brigade 632 - Shaoyang (Hunan) – DF-31AG ICBM (11000 km)</div>`)[0];
+                popup_21a7c27f6eab17d2ac6ac30fe7e7eb98.setContent(html_8df11112bd1f6d67dfdae2baf1aef43c);
+            
+        
+
+        marker_2bd565b718285e0890b8a2d53868c09a.bindPopup(popup_21a7c27f6eab17d2ac6ac30fe7e7eb98)
+        ;
+
+        
+    
+    
+            marker_2bd565b718285e0890b8a2d53868c09a.bindTooltip(
+                `<div>
+                     Brigade 632 - Shaoyang (Hunan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_043b41dd8446efb3c46015f31328067a = L.circle(
+                [27.254009, 111.388961],
+                {"bubblingMouseEvents": true, "color": "#191970", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#191970", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_6e2e357157175921a9756e39ca5979f3);
+        
+    
+        var popup_53282f6defb2b9eca01b543e37ed0302 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_121fbcf382c14621c6be4d63b85d8699 = $(`<div id="html_121fbcf382c14621c6be4d63b85d8699" style="width: 100.0%; height: 100.0%;">Brigade 632 - Shaoyang (Hunan) – DF-31AG ICBM (11000 km)</div>`)[0];
+                popup_53282f6defb2b9eca01b543e37ed0302.setContent(html_121fbcf382c14621c6be4d63b85d8699);
+            
+        
+
+        circle_043b41dd8446efb3c46015f31328067a.bindPopup(popup_53282f6defb2b9eca01b543e37ed0302)
+        ;
+
+        
+    
+    
+            feature_group_6e2e357157175921a9756e39ca5979f3.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_40525ab4b578e276dc593b4eac2400b6 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cb099e3d9819036007376cec38aa9828 = L.marker(
+                [42.258124, 118.825075],
+                {
+}
+            ).addTo(feature_group_40525ab4b578e276dc593b4eac2400b6);
+        
+    
+        var popup_01c7d2fb2b4f31b41f690259399a9540 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ccb150c01ca200d20b5ac5a5c5c94fce = $(`<div id="html_ccb150c01ca200d20b5ac5a5c5c94fce" style="width: 100.0%; height: 100.0%;">Brigade 651 - Chifeng (Inner Mongolia) – DF-41 ICBM (13000 km)</div>`)[0];
+                popup_01c7d2fb2b4f31b41f690259399a9540.setContent(html_ccb150c01ca200d20b5ac5a5c5c94fce);
+            
+        
+
+        marker_cb099e3d9819036007376cec38aa9828.bindPopup(popup_01c7d2fb2b4f31b41f690259399a9540)
+        ;
+
+        
+    
+    
+            marker_cb099e3d9819036007376cec38aa9828.bindTooltip(
+                `<div>
+                     Brigade 651 - Chifeng (Inner Mongolia)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_6778c41457f216fbf4d7f7f9d3f6e172 = L.circle(
+                [42.258124, 118.825075],
+                {"bubblingMouseEvents": true, "color": "#2e8b57", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e8b57", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_40525ab4b578e276dc593b4eac2400b6);
+        
+    
+        var popup_cc805070d803f6cb45c47aeefb91b7f4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6786ad667961ff08e47a5fd27d988444 = $(`<div id="html_6786ad667961ff08e47a5fd27d988444" style="width: 100.0%; height: 100.0%;">Brigade 651 - Chifeng (Inner Mongolia) – DF-41 ICBM (13000 km)</div>`)[0];
+                popup_cc805070d803f6cb45c47aeefb91b7f4.setContent(html_6786ad667961ff08e47a5fd27d988444);
+            
+        
+
+        circle_6778c41457f216fbf4d7f7f9d3f6e172.bindPopup(popup_cc805070d803f6cb45c47aeefb91b7f4)
+        ;
+
+        
+    
+    
+            var marker_ba98bb1e7b5c7522d2336f4ed645c3bb = L.marker(
+                [43.9385, 126.449443],
+                {
+}
+            ).addTo(feature_group_40525ab4b578e276dc593b4eac2400b6);
+        
+    
+        var popup_8bbbda3924930d5b8d2fc2a0805b150c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_04f3665a3dc9718958563c2446738638 = $(`<div id="html_04f3665a3dc9718958563c2446738638" style="width: 100.0%; height: 100.0%;">Brigade 652 - Jilin City (Jilin) – DF-41 ICBM (13000 km)</div>`)[0];
+                popup_8bbbda3924930d5b8d2fc2a0805b150c.setContent(html_04f3665a3dc9718958563c2446738638);
+            
+        
+
+        marker_ba98bb1e7b5c7522d2336f4ed645c3bb.bindPopup(popup_8bbbda3924930d5b8d2fc2a0805b150c)
+        ;
+
+        
+    
+    
+            marker_ba98bb1e7b5c7522d2336f4ed645c3bb.bindTooltip(
+                `<div>
+                     Brigade 652 - Jilin City (Jilin)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_7e52c65041e27e055b7fa85d7c409d66 = L.circle(
+                [43.9385, 126.449443],
+                {"bubblingMouseEvents": true, "color": "#2e8b57", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e8b57", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_40525ab4b578e276dc593b4eac2400b6);
+        
+    
+        var popup_bb8b41e7e3e12dd9003e0af8dc6519b7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2e3c3891a1a06c8d1a9703de2808663d = $(`<div id="html_2e3c3891a1a06c8d1a9703de2808663d" style="width: 100.0%; height: 100.0%;">Brigade 652 - Jilin City (Jilin) – DF-41 ICBM (13000 km)</div>`)[0];
+                popup_bb8b41e7e3e12dd9003e0af8dc6519b7.setContent(html_2e3c3891a1a06c8d1a9703de2808663d);
+            
+        
+
+        circle_7e52c65041e27e055b7fa85d7c409d66.bindPopup(popup_bb8b41e7e3e12dd9003e0af8dc6519b7)
+        ;
+
+        
+    
+    
+            var marker_38b384b3fc3a72f46da73d3ec0be180b = L.marker(
+                [31.945292, 112.120759],
+                {
+}
+            ).addTo(feature_group_40525ab4b578e276dc593b4eac2400b6);
+        
+    
+        var popup_3b62dd47b8fc4dcba8754d5636f444d6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4634b0356aacf136d30a6239454a6e2a = $(`<div id="html_4634b0356aacf136d30a6239454a6e2a" style="width: 100.0%; height: 100.0%;">Brigade 664 - Xiangyang (Hubei) – DF-41 ICBM (13000 km)</div>`)[0];
+                popup_3b62dd47b8fc4dcba8754d5636f444d6.setContent(html_4634b0356aacf136d30a6239454a6e2a);
+            
+        
+
+        marker_38b384b3fc3a72f46da73d3ec0be180b.bindPopup(popup_3b62dd47b8fc4dcba8754d5636f444d6)
+        ;
+
+        
+    
+    
+            marker_38b384b3fc3a72f46da73d3ec0be180b.bindTooltip(
+                `<div>
+                     Brigade 664 - Xiangyang (Hubei)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_7edf58980a899a7d02f0bd2350027de6 = L.circle(
+                [31.945292, 112.120759],
+                {"bubblingMouseEvents": true, "color": "#2e8b57", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2e8b57", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_40525ab4b578e276dc593b4eac2400b6);
+        
+    
+        var popup_3d754d1fa26084620bac68009dd48d53 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8512fe5c264d1b7a87b7ffeb730f2a7 = $(`<div id="html_f8512fe5c264d1b7a87b7ffeb730f2a7" style="width: 100.0%; height: 100.0%;">Brigade 664 - Xiangyang (Hubei) – DF-41 ICBM (13000 km)</div>`)[0];
+                popup_3d754d1fa26084620bac68009dd48d53.setContent(html_f8512fe5c264d1b7a87b7ffeb730f2a7);
+            
+        
+
+        circle_7edf58980a899a7d02f0bd2350027de6.bindPopup(popup_3d754d1fa26084620bac68009dd48d53)
+        ;
+
+        
+    
+    
+            feature_group_40525ab4b578e276dc593b4eac2400b6.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var feature_group_8768857560826f0185c7b1759fc9ae6f = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_c34faacaf9503aff898d929315e56e99 = L.marker(
+                [26.579157, 109.670782],
+                {
+}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_869b72e3d693ecfe5d3224fa42571331 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2c7ed5131d81021804206bfdfa6724ae = $(`<div id="html_2c7ed5131d81021804206bfdfa6724ae" style="width: 100.0%; height: 100.0%;">Brigade 631 - Jingzhou (Hunan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_869b72e3d693ecfe5d3224fa42571331.setContent(html_2c7ed5131d81021804206bfdfa6724ae);
+            
+        
+
+        marker_c34faacaf9503aff898d929315e56e99.bindPopup(popup_869b72e3d693ecfe5d3224fa42571331)
+        ;
+
+        
+    
+    
+            marker_c34faacaf9503aff898d929315e56e99.bindTooltip(
+                `<div>
+                     Brigade 631 - Jingzhou (Hunan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_b7bc8be9ae77895737c09126af5dadac = L.circle(
+                [26.579157, 109.670782],
+                {"bubblingMouseEvents": true, "color": "#8b0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b0000", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_2820e6223eb49be8966eb5b9df3f3194 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_af2c91ac52bd6e81473f9e64e727c24e = $(`<div id="html_af2c91ac52bd6e81473f9e64e727c24e" style="width: 100.0%; height: 100.0%;">Brigade 631 - Jingzhou (Hunan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_2820e6223eb49be8966eb5b9df3f3194.setContent(html_af2c91ac52bd6e81473f9e64e727c24e);
+            
+        
+
+        circle_b7bc8be9ae77895737c09126af5dadac.bindPopup(popup_2820e6223eb49be8966eb5b9df3f3194)
+        ;
+
+        
+    
+    
+            var marker_5f6b55c9ec3f736c661c76b9cd4bc711 = L.marker(
+                [26.89391, 109.739592],
+                {
+}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_0212692ec57fe47ea3a47f8605a6b335 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_63602a84b7b3ce359db5522ecf7ab805 = $(`<div id="html_63602a84b7b3ce359db5522ecf7ab805" style="width: 100.0%; height: 100.0%;">Brigade 633 - Huitong (Hunan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_0212692ec57fe47ea3a47f8605a6b335.setContent(html_63602a84b7b3ce359db5522ecf7ab805);
+            
+        
+
+        marker_5f6b55c9ec3f736c661c76b9cd4bc711.bindPopup(popup_0212692ec57fe47ea3a47f8605a6b335)
+        ;
+
+        
+    
+    
+            marker_5f6b55c9ec3f736c661c76b9cd4bc711.bindTooltip(
+                `<div>
+                     Brigade 633 - Huitong (Hunan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_59a1413f5b49a16ea1a2926ece612f04 = L.circle(
+                [26.89391, 109.739592],
+                {"bubblingMouseEvents": true, "color": "#8b0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b0000", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_c59cdc7a366cb9ec2f0bcbe5985dae97 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a23b9cf4950c78b73a88ea517b9e17ca = $(`<div id="html_a23b9cf4950c78b73a88ea517b9e17ca" style="width: 100.0%; height: 100.0%;">Brigade 633 - Huitong (Hunan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_c59cdc7a366cb9ec2f0bcbe5985dae97.setContent(html_a23b9cf4950c78b73a88ea517b9e17ca);
+            
+        
+
+        circle_59a1413f5b49a16ea1a2926ece612f04.bindPopup(popup_c59cdc7a366cb9ec2f0bcbe5985dae97)
+        ;
+
+        
+    
+    
+            var marker_209f68430887b92c387ff5a4d0361886 = L.marker(
+                [29.333373, 113.215396],
+                {
+}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_b15b50b08b8ae3e88a0015e0c8b29e3a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7583142c608418b081aa8a19fd2acf12 = $(`<div id="html_7583142c608418b081aa8a19fd2acf12" style="width: 100.0%; height: 100.0%;">Brigade 634 - Yueyang (Hunan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_b15b50b08b8ae3e88a0015e0c8b29e3a.setContent(html_7583142c608418b081aa8a19fd2acf12);
+            
+        
+
+        marker_209f68430887b92c387ff5a4d0361886.bindPopup(popup_b15b50b08b8ae3e88a0015e0c8b29e3a)
+        ;
+
+        
+    
+    
+            marker_209f68430887b92c387ff5a4d0361886.bindTooltip(
+                `<div>
+                     Brigade 634 - Yueyang (Hunan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_d8e922f5af06e3bad8028c3d8211bcdf = L.circle(
+                [29.333373, 113.215396],
+                {"bubblingMouseEvents": true, "color": "#8b0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b0000", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_19500343e057e6a9cb90d5b4dcdbd4d9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3752485040085ef3b48ab0315cc24288 = $(`<div id="html_3752485040085ef3b48ab0315cc24288" style="width: 100.0%; height: 100.0%;">Brigade 634 - Yueyang (Hunan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_19500343e057e6a9cb90d5b4dcdbd4d9.setContent(html_3752485040085ef3b48ab0315cc24288);
+            
+        
+
+        circle_d8e922f5af06e3bad8028c3d8211bcdf.bindPopup(popup_19500343e057e6a9cb90d5b4dcdbd4d9)
+        ;
+
+        
+    
+    
+            var marker_ce135deeac47d25d72d2f04bd88a8ec5 = L.marker(
+                [34.516723, 110.86174],
+                {
+}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_19a0cd91b65df46d85964c35aea91e42 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_64d596b837f4714ee790bfd73da0e71f = $(`<div id="html_64d596b837f4714ee790bfd73da0e71f" style="width: 100.0%; height: 100.0%;">Brigade 661 - Lushi (Henan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_19a0cd91b65df46d85964c35aea91e42.setContent(html_64d596b837f4714ee790bfd73da0e71f);
+            
+        
+
+        marker_ce135deeac47d25d72d2f04bd88a8ec5.bindPopup(popup_19a0cd91b65df46d85964c35aea91e42)
+        ;
+
+        
+    
+    
+            marker_ce135deeac47d25d72d2f04bd88a8ec5.bindTooltip(
+                `<div>
+                     Brigade 661 - Lushi (Henan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_a4a4565be2251a1f687a35cb6489d011 = L.circle(
+                [34.516723, 110.86174],
+                {"bubblingMouseEvents": true, "color": "#8b0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b0000", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_0666d60a065eb21001bdc5216dbcdc9b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_507dfe235ebfd1b72e3e3d95acac8d7a = $(`<div id="html_507dfe235ebfd1b72e3e3d95acac8d7a" style="width: 100.0%; height: 100.0%;">Brigade 661 - Lushi (Henan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_0666d60a065eb21001bdc5216dbcdc9b.setContent(html_507dfe235ebfd1b72e3e3d95acac8d7a);
+            
+        
+
+        circle_a4a4565be2251a1f687a35cb6489d011.bindPopup(popup_0666d60a065eb21001bdc5216dbcdc9b)
+        ;
+
+        
+    
+    
+            var marker_90bdca304143bba1c60f308e960c25f0 = L.marker(
+                [33.792418, 111.588338],
+                {
+}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_64d6874aa6a9a662436dde03df3fc843 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7213967531da0e4f075d173aba77c899 = $(`<div id="html_7213967531da0e4f075d173aba77c899" style="width: 100.0%; height: 100.0%;">Brigade 662 - Luanchuan (Henan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_64d6874aa6a9a662436dde03df3fc843.setContent(html_7213967531da0e4f075d173aba77c899);
+            
+        
+
+        marker_90bdca304143bba1c60f308e960c25f0.bindPopup(popup_64d6874aa6a9a662436dde03df3fc843)
+        ;
+
+        
+    
+    
+            marker_90bdca304143bba1c60f308e960c25f0.bindTooltip(
+                `<div>
+                     Brigade 662 - Luanchuan (Henan)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_541058c1dea6f92ff36a7b9cd1947f7d = L.circle(
+                [33.792418, 111.588338],
+                {"bubblingMouseEvents": true, "color": "#8b0000", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b0000", "fillOpacity": 0.09, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12000000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_8768857560826f0185c7b1759fc9ae6f);
+        
+    
+        var popup_302becf86dcbf903159552f1217f157f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_179a5f0d56a24e6a59da1d79c5db47cc = $(`<div id="html_179a5f0d56a24e6a59da1d79c5db47cc" style="width: 100.0%; height: 100.0%;">Brigade 662 - Luanchuan (Henan) – DF-5 ICBM (12000 km)</div>`)[0];
+                popup_302becf86dcbf903159552f1217f157f.setContent(html_179a5f0d56a24e6a59da1d79c5db47cc);
+            
+        
+
+        circle_541058c1dea6f92ff36a7b9cd1947f7d.bindPopup(popup_302becf86dcbf903159552f1217f157f)
+        ;
+
+        
+    
+    
+            feature_group_8768857560826f0185c7b1759fc9ae6f.addTo(map_c5769a383f8817723c4699d5c5cff15d);
+        
+    
+            var layer_control_44cd4fb1baaf56c79fc26624eab984b2_layers = {
+                base_layers : {
+                    "cartodbdarkmatter" : tile_layer_a19fda5bd036e4dd0376a8c04f2a2e9f,
+                },
+                overlays :  {
+                    "DF-11 coverage" : feature_group_ddc6f87829dc9e57a95689946109a177,
+                    "DF-15 coverage" : feature_group_b2f0ce8f6e63a20a8f0b3af092fa599c,
+                    "DF-16B coverage" : feature_group_3c99e27c38d4d734633cc4bd93961521,
+                    "DF-16 coverage" : feature_group_2204c18cff93fe725fdfde318e79496f,
+                    "DF-17 coverage" : feature_group_28bdc3eb4d0f83acbff280c0a58ac04a,
+                    "DF-21A coverage" : feature_group_09df619325d4e490056e4f909eb29814,
+                    "DF-21D coverage" : feature_group_c076bb5e4fbf7543f142a7a8a44ebcab,
+                    "DF-26 coverage" : feature_group_ec837c242b3624df619a1c2545a3acae,
+                    "DF-100 coverage" : feature_group_8167762a4e966b4601422be63776efb3,
+                    "DF-10 coverage" : feature_group_b9b50ece5f34c34f6777bc6cb2d3d6ed,
+                    "DF-10A coverage" : feature_group_a5b9fe351f75dc62f399655bfa3b5449,
+                    "DF-31 coverage" : feature_group_1ab96f2467293bffaa8bcbc493b292bc,
+                    "DF-31A coverage" : feature_group_e62000e211a0a08ffc79eff46cf906da,
+                    "DF-31AG coverage" : feature_group_6e2e357157175921a9756e39ca5979f3,
+                    "DF-41 coverage" : feature_group_40525ab4b578e276dc593b4eac2400b6,
+                    "DF-5 coverage" : feature_group_8768857560826f0185c7b1759fc9ae6f,
+                },
+            };
+            let layer_control_44cd4fb1baaf56c79fc26624eab984b2 = L.control.layers(
+                layer_control_44cd4fb1baaf56c79fc26624eab984b2_layers.base_layers,
+                layer_control_44cd4fb1baaf56c79fc26624eab984b2_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_c5769a383f8817723c4699d5c5cff15d);
+
+        
+</script>
+</html>

@@ -31,11 +31,6 @@ __pycache__/
 # PROJECT-SPECIFIC IGNORE RULES
 ############################################
 
-# Ignore all output except the placeholder
-/output/*
-!/output/.output_keep
-
-
 ############################################
 # IDE / EDITOR ARTIFACTS
 ############################################
