@@ -9,12 +9,14 @@ This project maps approximate missile ranges using OSINT-based brigade coordinat
 
 ## Overview
 
-This project visualizes the approximate range envelopes of major Chinese missile systems (DF-series SRBMs, MRBMs, IRBMs, HGVs, ICBMs, and LACMs) using:
+This project is a web application that visualizes the approximate range envelopes of major Chinese missile systems (DF-series SRBMs, MRBMs, IRBMs, HGVs, ICBMs, and LACMs) using:
 
 - `folium` for interactive maps  
 - `pandas` for data handling  
-- Jupyter Notebook for running and exporting the final HTML map  
+- An **Express** backend that serves the website and the exported map  
 - A small Python module for clean, reusable map generation logic  
+
+On first load, users must manually select the missiles and bases they want to view.
 
 The map allows you to toggle each missile type individually, showing which brigades are equipped with which missile systems and how far each can reach.
 
@@ -25,6 +27,8 @@ All data is approximate and comes from publicly available sources.
 
 ## Features
 
+- Web-based map viewer served by Express
+- Manual selection of missiles and bases on initial load
 - Separate map layer for **each missile type** (DF-11, DF-15, DF-16, DF-16B, DF-17, DF-21A, DF-21D, DF-26, DF-41, DF-100, DF-10, DF-10A, DF-31, DF-31A, DF-31AG, DF-5)
 - Only brigades equipped with a missile appear in that missile’s layer
 - Color-coded range rings based on missile system
@@ -39,20 +43,17 @@ All data is approximate and comes from publicly available sources.
 ```
 plarf-missile-coverage/
 │
+├─ backend/
+│   ├─ index.js                 # Express server
+│   ├─ package.json
+│   └─ output/                  # Exported map HTML (served by backend)
+│
 ├─ data/
-│   ├─ bases.csv                # PLARF brigades + coordinates + assigned missile
+│   ├─ bases.csv                # PLARF brigades + coordinates + assigned missiles
 │   └─ ranges.csv               # Missile types, categories, and simplified ranges
 │
-├─ media
-│   └─ image_example.png   # Screenshot for README (tracked)
-│
-├─ notebooks/
-│   ├─ archive/                 # Old or experimental notebooks
-│   └─ plarf_missile_map.ipynb  # Main notebook (generate/export the map)
-│
-├─ output/
-│   ├─ .output_keep                 # Keeps folder tracked
-│   └─ plarf_missile_coverage.html  # Exported interactive map (ignored in git)
+├─ media/
+│   └─ image_example.png        # Screenshot for README
 │
 ├─ src/
 │   └─ missile_map.py           # Core map-building logic
@@ -64,48 +65,11 @@ plarf-missile-coverage/
 
 ---
 
-## How to Run
+## Website
 
-### 1. Create a virtual environment (optional but recommended)
+Access the live site here:
 
-```
-python -m venv .venv
-source .venv/bin/activate      # macOS / Linux
-.venv\Scripts\activate         # Windows
-```
-
-### 2. Install dependencies
-
-```
-pip install pandas folium notebook
-```
-
-### 3. Start Jupyter Notebook
-
-```
-jupyter notebook
-```
-
-### 4. Open the main notebook
-
-Open:
-
-```
-notebooks/plarf_missile_map.ipynb
-```
-
-Run the notebook top-to-bottom.  
-It will:
-
-- Load data from CSV  
-- Build the interactive PLARF coverage map  
-- Save the HTML map to:
-
-```
-output/plarf_missile_coverage.html
-```
-
-Open that file in your browser to interact with the map.
+- url placeholder for now
 
 ---
 

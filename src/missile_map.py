@@ -17,7 +17,7 @@ def add_range_layers(map_obj, bases_df, ranges_df):
 
     for _, r in ranges_df.iterrows():
         code = r["missile_code"]
-        fg = folium.FeatureGroup(name=f"{code} coverage")
+        fg = folium.FeatureGroup(name=f"{code} coverage", show=False)
         fg.add_to(map_obj)  # Attach once
         missile_layers[code] = fg
 
