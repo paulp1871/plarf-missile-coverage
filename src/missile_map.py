@@ -114,4 +114,4 @@ def build_plarf_map(
 
     return m
 
-build_plarf_map(bases_path="../data/bases.csv", ranges_path="../data/ranges.csv", output_path="../output/map.html")
+build_plarf_map(bases_path="../data/bases.csv", ranges_path="../data/ranges.csv", output_path="../backend/output/map.html")
