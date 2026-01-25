@@ -17,8 +17,6 @@ This project is a web application that visualizes the approximate range envelope
 - A small Python module for clean, reusable map generation logic  
 
 On first load, users must manually select the missiles and bases they want to view.
-
-On first load, users must manually select the missiles and bases they want to view.
 The map allows you to toggle each missile type individually using the Leaflet layer control.
 
 This is a **technical and educational visualization**, not a military evaluation.  

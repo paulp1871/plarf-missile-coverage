@@ -9,10 +9,8 @@ def load_bases(path="../data/bases.csv"):
 def load_ranges(path="../data/ranges.csv"):
     return pd.read_csv(path)
 
-
 def create_map(center=[30, 115], zoom=4, tiles="CartoDB dark_matter"):
     return folium.Map(location=center, zoom_start=zoom, tiles=tiles)
-
 
 def add_range_layers(map_obj, bases_df, ranges_df):
     missile_layers = {}
@@ -33,11 +31,11 @@ def add_range_layers(map_obj, bases_df, ranges_df):
         if not missiles_str:
             continue
 
-        missile_codes = []
-        for code in missiles_raw.split(","):
-            clean_code = code.strip()
-            if clean_code:
-                missile_codes.append(clean_code)
+        missile_codes = [
+            code.strip()
+            for code in missiles_str.split(",")
+            if code.strip()
+        ]
 
         for code in missile_codes:
             if code not in ranges_by_code:
@@ -50,15 +48,15 @@ def add_range_layers(map_obj, bases_df, ranges_df):
             label = r["label"]
 
             folium.Marker(
-                location=base_location,
-                popup=popup_text,
+                location=[base["lat"], base["lon"]],
+                popup=f'{base["name"]} – {label}',
                 tooltip=base["name"],
             ).add_to(missile_layers[code])
 
             folium.Circle(
-                location=base_location,
+                location=[base["lat"], base["lon"]],
                 radius=radius_km * 1000,
-                popup=popup_text,
+                popup=f'{base["name"]} – {label}',
                 color=color,
                 weight=1,
                 fill=True,
@@ -69,16 +67,13 @@ def add_range_layers(map_obj, bases_df, ranges_df):
 
 
 def add_legend(map_obj, ranges_df):
-    legend_rows = []
-    for _, row in ranges_df.iterrows():
-        color = row["color"] if pd.notna(row["color"]) else "black"
-        code = row["missile_code"]
-        radius_km = row["radius_km"]
-        legend_rows.append(
-            f'<span style="color:{color};">&#9679;</span> {code} ({radius_km} km)'
+    rows = []
+    for _, r in ranges_df.iterrows():
+        color = r["color"] if pd.notna(r["color"]) else "black"
+        rows.append(
+            f'<span style="color:{color};">&#9679;</span> {r["missile_code"]} ({r["radius_km"]} km)'
         )
-
-    rows_html = "<br>".join(legend_rows)
+    rows_html = "<br>".join(rows)
 
     legend_html = f"""
     <div style="
@@ -99,7 +94,6 @@ def add_legend(map_obj, ranges_df):
     """
 
     map_obj.get_root().html.add_child(folium.Element(legend_html))
-
 
 def export_map(map_obj, output_path="../output/map.html"):
     map_obj.save(output_path)
