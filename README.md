@@ -42,7 +42,7 @@ All data is approximate and comes from publicly available sources.
 
 Access the live app here:
 
-- [Application Link](https://plarf-missile-coverage-visualizer.onrender.com/)
+- [Application Link](https://plarf-missile-coverage-visualizer-foto.onrender.com/)
 
 ---
 
